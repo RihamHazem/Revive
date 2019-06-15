@@ -11,6 +11,7 @@ import { FooterComponent } from './footer/footer.component';
 import { UploadImageComponent } from './upload-image/upload-image.component';
 import { DragAndDropDirective } from './drag-and-drop.directive';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     MatToolbarModule,
     MatCardModule,

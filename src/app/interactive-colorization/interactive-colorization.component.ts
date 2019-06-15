@@ -10,7 +10,9 @@ import {RestRequestsService} from '../rest-requests.service';
 export class InteractiveColorizationComponent implements OnInit {
   @Input() private imageUrl: string|ArrayBuffer;
   @Input() private imageOffset: {val: number, dir: boolean, height: number, width: number};
-  constructor(private restRequestService: RestRequestsService) { }
+  constructor(private restRequestsService: RestRequestsService) {
+    console.log(restRequestsService);
+  }
 
   colorizeButtonStr = 'Colorize';
   state = {r: 0, g: 0, b: 0, a: 0};
@@ -76,7 +78,11 @@ export class InteractiveColorizationComponent implements OnInit {
     }
     this.points.push(this.points.length);
     this.positions.push({left: x, top: y, 'background-color': InteractiveColorizationComponent.getRGBA(this.curColor)});
-    this.positionsStyle.push({left: clickEvent.offsetX, top: clickEvent.offsetY, 'background-color': InteractiveColorizationComponent.getRGBA(this.curColor)});
+    this.positionsStyle.push({
+      left: clickEvent.offsetX,
+      top: clickEvent.offsetY,
+      'background-color': InteractiveColorizationComponent.getRGBA(this.curColor)
+    });
     console.log(this.positions);
     console.log(this.positionsStyle);
     this.isHidden.push(false);
@@ -96,6 +102,9 @@ export class InteractiveColorizationComponent implements OnInit {
     this.imageBW = false;
   }
   colorizeImage() {
-    this.restRequestService.interColrImage(this.imageUrl, this.positions);
+    console.log(this.restRequestsService);
+    this.restRequestsService.interColrImage(this.imageUrl, this.positions).subscribe((data) => {
+      console.log(data);
+    });
   }
 }
