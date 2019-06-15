@@ -8,11 +8,8 @@
   box-sizing: border-box;
 }
 
-body {
+body, html {
   /*background-color: #303030;*/
   background-color: #ffffff;
-}
-
-.sketch-saturation[_ngcontent-ttc-c3] {
-  padding-bottom: 85%;
+  height: 100%;
 }

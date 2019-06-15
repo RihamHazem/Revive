@@ -1,12 +1,12 @@
 .drop-zone {
   height: 400px;
-  width: 650px;
+  width: 40%;
   display: table;
 
   background-color: #bbb;
   background-image: url("../../assets/images/download.svg");
   background-repeat: no-repeat;
-  background-size: 30%;
+  background-size: 20%;
   background-position: center 85px;
 
   padding-top: 200px;
