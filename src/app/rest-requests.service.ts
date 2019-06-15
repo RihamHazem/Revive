@@ -5,7 +5,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
   providedIn: 'root'
 })
 export class RestRequestsService {
-  apiUrl = '';
+  apiUrl = 'localhost:5000/';
   private options = { headers: new HttpHeaders().set('Content-Type', 'application/json') };
   constructor(private http: HttpClient) { }
   interColrImage(imageFile: string|ArrayBuffer, positions) {
