@@ -46,7 +46,8 @@ export class DragAndDropDirective {
       const validFiles: Array<File> = [];
 
       for (const file of droppedFiles) {
-        const ext = file.name.split('.')[file.name.split('.').length - 1];
+        const filename = file.name.toLowerCase();
+        const ext = filename.split('.')[filename.split('.').length - 1];
         if (this.allowedExtensions.lastIndexOf(ext) !== -1) {
           validFiles.push(file);
         } else {
