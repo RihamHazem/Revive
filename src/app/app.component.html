@@ -1,0 +1,4 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<app-nav-bar [heroSection]="mode === 'upload'"></app-nav-bar>
+<app-interactive-colorization *ngIf="mode === 'interactive'" [imageUrl]="imageUrl" [imageOffset]="imageOffset"></app-interactive-colorization>
+<app-upload-image *ngIf="mode === 'upload'" (colorize)="interColorizationMode($event)"></app-upload-image>

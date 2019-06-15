@@ -1,0 +1,38 @@
+.drop-zone {
+  height: 400px;
+  width: 650px;
+  display: table;
+
+  background-color: #bbb;
+  background-image: url("../../assets/images/download.svg");
+  background-repeat: no-repeat;
+  background-size: 30%;
+  background-position: center 85px;
+
+  padding-top: 200px;
+  margin: auto;
+  outline: 2px dashed #CCCCCC;
+  color: #CCCCCC;
+  outline-offset: -10px;
+  transition: outline-offset .15s ease-in-out, background-color .15s linear;
+  transform: translateY(-50%);
+}
+
+.text-wrapper {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.centered {
+  font-family: sans-serif;
+  font-size: 1.3em;
+  font-weight: bold;
+  text-align:center;
+}
+
+.error {
+  position: fixed;
+  left: 20px;
+  bottom: 20px;
+}

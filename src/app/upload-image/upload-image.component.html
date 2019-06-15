@@ -1,0 +1,7 @@
+<div class="drop-zone" appDragAndDrop (filesChangeEmiter)="onFilesChange($event)" (filesInvalidEmiter)="onFileInvalids($event)" [allowedExtensions]="['png', 'jpg', 'bmp']">
+  <div class="text-wrapper">
+    <div class="centered">Drop your image here!</div>
+  </div>
+</div>
+<ngb-alert class="error" type="danger" *ngIf="uploadError" (close)="close()">{{ messageError }}</ngb-alert>
+
