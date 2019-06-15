@@ -9,10 +9,8 @@ import {RestRequestsService} from '../rest-requests.service';
 })
 export class InteractiveColorizationComponent implements OnInit {
   @Input() private imageUrl: string|ArrayBuffer;
-  @Input() private imageOffset: {val: number, dir: boolean, height: number, width: number};
-  constructor(private restRequestsService: RestRequestsService) {
-    console.log(restRequestsService);
-  }
+  @Input() private imageOffset: {val: number, dir: boolean, oldWidth: number, oldHeight: number, newWidth: number, newHeight: number};
+  constructor(private restRequestsService: RestRequestsService) { }
 
   colorizeButtonStr = 'Colorize';
   state = {r: 0, g: 0, b: 0, a: 0};
@@ -66,18 +64,26 @@ export class InteractiveColorizationComponent implements OnInit {
     let y = clickEvent.offsetY;
     if (this.imageOffset.dir === false) {
       // width is greater
-      if (y < this.imageOffset.val || y > this.imageOffset.val + this.imageOffset.height) {
+      if (y < this.imageOffset.val || y > this.imageOffset.val + this.imageOffset.newHeight) {
         return;
       }
       y -= this.imageOffset.val;
     } else {
-      if (x < this.imageOffset.val || x > this.imageOffset.val + this.imageOffset.width) {
+      if (x < this.imageOffset.val || x > this.imageOffset.val + this.imageOffset.newWidth) {
         return;
       }
       x -= this.imageOffset.val;
     }
     this.points.push(this.points.length);
-    this.positions.push({left: x, top: y, 'background-color': InteractiveColorizationComponent.getRGBA(this.curColor)});
+    this.positions.push({
+      left: x,
+      top: y,
+      oldWidth: this.imageOffset.oldWidth,
+      oldHeight: this.imageOffset.oldHeight,
+      newWidth: this.imageOffset.newWidth,
+      newHeight: this.imageOffset.newHeight,
+      'background-color': InteractiveColorizationComponent.getRGBA(this.curColor)
+    });
     this.positionsStyle.push({
       left: clickEvent.offsetX,
       top: clickEvent.offsetY,
@@ -102,8 +108,15 @@ export class InteractiveColorizationComponent implements OnInit {
     this.imageBW = false;
   }
   colorizeImage() {
-    console.log(this.restRequestsService);
-    this.restRequestsService.interColrImage(this.imageUrl, this.positions).subscribe((data) => {
+    const filteredPositions = [];
+    let i = 0;
+    for (const elem of this.isHidden) {
+      if (elem === true) {
+        filteredPositions.push(this.positions[i]);
+      }
+      i += 1;
+    }
+    this.restRequestsService.interColrImage(this.imageUrl, filteredPositions).subscribe((data) => {
       console.log(data);
     });
   }
