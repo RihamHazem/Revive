@@ -10,7 +10,7 @@ export class AppComponent implements OnInit {
   divWidth = 500;
   mode = 'upload'; // whether resolution or interactive or colorization
   imageUrl: string|ArrayBuffer;
-  imageOffset = {val: -1, dir: false, oldWidth: 0, oldHeight: 0, newWidth: 0, newHeight: 0}; // false: width, true: height
+  imageOffset = {val: -1, direc: false, oldWidth: 0, oldHeight: 0, newWidth: 0, newHeight: 0, name: ''}; // false: width, true: height
   ngOnInit() {
   }
 
@@ -31,17 +31,18 @@ export class AppComponent implements OnInit {
         let offset = -1;
         if (width > height) {
           offset = (this.divWidth / width) * height;
-          this.imageOffset.dir = false;
+          this.imageOffset.direc = false;
           this.imageOffset.newWidth = width;
           this.imageOffset.newHeight = offset;
         } else {
           offset = (this.divWidth / height) * width;
-          this.imageOffset.dir = true;
+          this.imageOffset.direc = true;
           this.imageOffset.newWidth = offset;
           this.imageOffset.newHeight = height;
         }
         offset = ((this.divWidth - offset) / 2);
         this.imageOffset.val = offset;
+        this.imageOffset.name = imgFile.name;
         console.log(this.imageOffset);
       };
     };

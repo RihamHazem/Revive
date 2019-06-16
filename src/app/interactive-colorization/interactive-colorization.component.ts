@@ -9,7 +9,7 @@ import {RestRequestsService} from '../rest-requests.service';
 })
 export class InteractiveColorizationComponent implements OnInit {
   @Input() private imageUrl: string|ArrayBuffer;
-  @Input() private imageOffset: {val: number, dir: boolean, oldWidth: number, oldHeight: number, newWidth: number, newHeight: number};
+  @Input() private imageOffset: {val: number, dir: boolean, oldWidth: number, oldHeight: number, newWidth: number, newHeight: number, name: string};
   constructor(private restRequestsService: RestRequestsService) { }
 
   colorizeButtonStr = 'Colorize';
